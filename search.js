@@ -13,18 +13,26 @@ function clearSearchResultArea() {
 
 function addResult(resultList, answer, sourceText) {
   let listItem = document.createElement("li");
-  let resultText = document.createTextNode(answer);
-  listItem.appendChild(resultText);
+  listItem.innerHTML = answer;
+  //let resultText = document.createTextNode(answer);
+  //listItem.i(answer);
   if (null !== sourceText && sourceText !== undefined) {
+    let sourceSection = document.createElement("p");
+    sourceSection.classList.add("result-source");
     let resultSource = document.createTextNode(sourceText);
-
-    listItem.appendChild(resultSource);
+    sourceSection.appendChild(resultSource);
+    listItem.appendChild(sourceSection);
   }
   listItem.classList.add("folded");
   listItem.addEventListener("click", evt => {
     listItem.classList.toggle("folded");
   });
   resultList.appendChild(listItem);
+}
+
+function makeBold(str) {
+  let regex = /\*\*([^\*]+)\*\*/g;
+  return str.replace(regex, "<b>$1</b>");
 }
 
 let form = document.getElementById("search-form");
@@ -63,7 +71,11 @@ form.addEventListener("submit", () => {
       add searchitems to result list.
     */
     for (let i in myJson.answers) {
-      addResult(resultList, myJson.answers[i].answer, myJson.answers[i].source);
+      addResult(
+        resultList,
+        makeBold(myJson.answers[i].answer),
+        myJson.answers[i].source
+      );
     }
   };
   searchResult();
