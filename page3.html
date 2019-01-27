@@ -34,9 +34,14 @@
     <link rel="stylesheet" href="assets/theme/css/style.css" />
     <link
       rel="stylesheet"
+      href="assets/searchContainer-styling/searchResult.css"
+    />
+    <link
+      rel="stylesheet"
       href="assets/mobirise/css/mbr-additional.css"
       type="text/css"
     />
+
     <script type="text/javascript" src="search.js" defer></script>
   </head>
   <body>
@@ -180,19 +185,7 @@
               data-form-title="Mobirise Form"
               id="search-form"
             >
-              <!-- <input
-                type="hidden"
-                name="email"
-                data-form-email="true"
-                value="wApMWgz9R+mDFfay2gH/KMV+FMRNDY7bk/aCUsyjW+TeA6MTC6/5ib29VHS24QOGIIa5ZV0/M1pwjFp5q//ADD3aurckB68AhIg/SxtI55vasmUTJi1Uo9scRHpJL2oC"
-              /> -->
-              <!-- <div class="mbr-subscribe input-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email" data-form-field="Email" required="" id="email-form3-1v">
-                        <span class="input-group-btn">
-                            <button href="" type="submit" class="btn btn-primary  display-4">SUBSCRIBE</button>
-                        </span>
-                    </div> -->
-              <div>
+              <div class="input-group" id="search-input-group">
                 <input
                   class="form-control"
                   type="search"
@@ -204,28 +197,20 @@
                   <button
                     href=""
                     type="submit"
+                    id="searchButton"
                     class="btn btn-primary  display-4"
                   >
                     Search
                   </button>
                 </span>
               </div>
-              <!-- <span class="gdpr-block "
-                ><label
-                  ><input
-                    type="checkbox"
-                    name="gdpr"
-                    id="gdpr-form3-1v"
-                    required=""
-                  />By continiung you agree to our
-                  <a href="terms.html">Terms of Service</a> and
-                  <a href="policy.html">Privacy Policy</a>.</label
-                ></span -->
-              >
             </form>
           </div>
         </div>
       </div>
+    </section>
+    <section class="result" id="searchResult">
+      <ul class="result" id="searchResultList"></ul>
     </section>
 
     <section class="footer4 cid-rfHKTFLclE" id="footer4-1w">
