@@ -14,8 +14,7 @@ function clearSearchResultArea() {
 function addResult(resultList, answer, sourceText) {
   let listItem = document.createElement("li");
   listItem.innerHTML = answer;
-  //let resultText = document.createTextNode(answer);
-  //listItem.i(answer);
+  
   if (null !== sourceText && sourceText !== undefined) {
     let sourceSection = document.createElement("p");
     sourceSection.classList.add("result-source");
@@ -23,10 +22,21 @@ function addResult(resultList, answer, sourceText) {
     sourceSection.appendChild(resultSource);
     listItem.appendChild(sourceSection);
   }
-  listItem.classList.add("folded");
-  listItem.addEventListener("click", evt => {
-    listItem.classList.toggle("folded");
-  });
+
+  if (answer.length > 50) {
+    let readMoreLink = document.createElement("a");
+    let readMoreContent = document.createElement("span");
+    readMoreContent.classList.add("read-more");
+    readMoreLink.appendChild(readMoreContent);
+    readMoreLink.href = "javascript:void(0)";
+    listItem.appendChild(readMoreLink);
+
+    listItem.classList.add("folded");
+    listItem.addEventListener("click", evt => {
+      listItem.classList.toggle("folded");
+    });
+  }
+
   resultList.appendChild(listItem);
 }
 
@@ -50,10 +60,6 @@ form.addEventListener("submit", () => {
 
   let body = JSON.stringify({ question: data });
 
-  //Call method to clear search result area before showing new search
-  //result.
-  clearSearchResultArea();
-
   const searchResult = async () => {
     const response = await fetch(url, {
       method: "POST",
@@ -65,6 +71,8 @@ form.addEventListener("submit", () => {
     });
     const myJson = await response.json();
     let resultList = document.getElementById("searchResultList");
+
+    clearSearchResultArea();
 
     /*
       Loop through all elements in response' answers list, 

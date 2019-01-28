@@ -15,8 +15,8 @@
   border: 2px solid #a5d6a5;
   padding: 20px;
   background-color: white;
-  grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
 }
 
 #searchResult {
@@ -46,6 +46,16 @@
 
 li.folded .result-source {
   display: none;
+}
+
+li.folded .read-more:after {
+  content: "Read more";
+  display: block;
+}
+
+li .read-more:after {
+  content: "Read less";
+  display: block;
 }
 
 .result-source {
